@@ -1,0 +1,64 @@
+/* Custom overrides and specific styles beyond Tailwind utilities */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1; 
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8; 
+}
+
+/* Hide scrollbar for alphabet filter */
+#alphabetFilter {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+#alphabetFilter::-webkit-scrollbar {
+    display: none;
+}
+
+/* Modal Animations */
+#bookingModal.modal-open {
+    display: block;
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Time slot selection styles */
+.time-slot {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.time-slot input[type="radio"]:checked + div {
+    background-color: #0056b3;
+    color: white;
+    border-color: #0056b3;
+}
+
+/* Utility to ensure dropdowns stack correctly */
+select {
+    background-image: none !important; /* Tailwind resets this, we added our own chevron icon in HTML */
+}

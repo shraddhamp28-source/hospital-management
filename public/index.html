@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terna Specialty Hospital | Compassionate Care</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0056b3', // Terna Blue
+                        secondary: '#e6f0fa',
+                        accent: '#ff9900',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Top Bar -->
+    <div class="bg-primary text-white py-2 px-4 md:px-8 text-sm flex justify-between items-center hidden md:flex">
+        <div class="flex space-x-6">
+            <span><i class="fas fa-phone-alt mr-2"></i>Emergency: 022-61568000</span>
+            <span><i class="fas fa-envelope mr-2"></i>info@ternahospital.org</span>
+        </div>
+        <div class="flex space-x-4">
+            <a href="#" class="hover:text-secondary transition">Patient Portal</a>
+            <a href="#" class="hover:text-secondary transition">Careers</a>
+            <a href="#" class="hover:text-secondary transition">Contact Us</a>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="text-primary font-bold text-2xl md:text-3xl tracking-tight flex items-center">
+                        <i class="fas fa-hospital-symbol text-accent mr-3 text-3xl"></i>
+                        <div class="flex flex-col">
+                            <span class="leading-none">TERNA</span>
+                            <span class="text-xs text-gray-500 font-medium tracking-wide mt-1">SPECIALTY HOSPITAL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-600 hover:text-primary font-medium transition">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary font-medium transition">About Us</a>
+                    <a href="#specialities" class="text-gray-600 hover:text-primary font-medium transition">Specialities</a>
+                    <a href="#doctors" class="text-gray-600 hover:text-primary font-medium transition">Doctors</a>
+                    <a href="#track" class="text-gray-600 hover:text-primary font-medium transition">Track Appointment</a>
+                    <a href="#admin" class="text-gray-600 hover:text-primary font-medium transition">Admin</a>
+                    <a href="#appointment" class="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-md font-semibold transition shadow-md">Book Appointment</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-gray-200 fade-in">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#home" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md" onclick="toggleMobileMenu()">Home</a>
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md" onclick="toggleMobileMenu()">About Us</a>
+                <a href="#specialities" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md" onclick="toggleMobileMenu()">Specialities</a>
+                <a href="#doctors" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md" onclick="toggleMobileMenu()">Doctors</a>
+                <a href="#track" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md" onclick="toggleMobileMenu()">Track Appointment</a>
+                <a href="#admin" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md" onclick="toggleMobileMenu()">Admin</a>
+                <a href="#appointment" class="block px-3 py-3 text-base font-bold text-white bg-primary hover:bg-blue-700 rounded-md text-center mt-4" onclick="toggleMobileMenu()">Book Appointment</a>
+            </div>
+        </div>
+    </header>
+
+    <div id="home">
+        <!-- Page Banner / Hero -->
+        <div class="bg-secondary py-20 border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left md:flex items-center justify-between">
+                <div class="md:w-1/2">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Expert Medical Care You Can Trust</h1>
+                    <p class="text-lg text-gray-600 mb-8">At Terna Specialty Hospital, we combine cutting-edge technology with compassionate care to ensure the best health outcomes for our patients.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
+                        <a href="#appointment" class="bg-primary text-white px-8 py-3 rounded-md font-bold text-lg hover:bg-blue-700 transition shadow-lg text-center">Book an Appointment</a>
+                        <a href="#services" class="bg-white text-primary border-2 border-primary px-8 py-3 rounded-md font-bold text-lg hover:bg-gray-50 transition text-center">Our Services</a>
+                    </div>
+                </div>
+                <div class="hidden md:block md:w-1/2 pl-12">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800" alt="Hospital Building" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <section id="about" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">About Terna Hospital</h2>
+                <div class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">Established in 1990, we are a leading healthcare provider in Navi Mumbai.</div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-primary mb-4">Our Vision & Mission</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Our vision is to be the benchmark in healthcare services, recognized for excellence in patient care and medical outcomes. Our mission is to provide affordable, accessible, and high-quality medical services to all sections of society.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-accent mr-3"></i> 250+ Bed Multi-Specialty Facility
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-accent mr-3"></i> Advanced Diagnostic Laboratory
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-accent mr-3"></i> 24/7 Emergency and Trauma Center
+                        </li>
+                    </ul>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-secondary p-6 rounded-xl text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">30+</div>
+                        <div class="text-sm text-gray-600 font-medium">Years of Experience</div>
+                    </div>
+                    <div class="bg-secondary p-6 rounded-xl text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">100+</div>
+                        <div class="text-sm text-gray-600 font-medium">Expert Doctors</div>
+                    </div>
+                    <div class="bg-secondary p-6 rounded-xl text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">1M+</div>
+                        <div class="text-sm text-gray-600 font-medium">Patients Treated</div>
+                    </div>
+                    <div class="bg-secondary p-6 rounded-xl text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">24/7</div>
+                        <div class="text-sm text-gray-600 font-medium">Emergency Care</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialities Section -->
+    <section id="specialities" class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Our Specialities</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">Comprehensive healthcare across a wide range of medical disciplines.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <i class="fas fa-heartbeat text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-gray-900">Cardiology</h3>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <i class="fas fa-bone text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-gray-900">Orthopaedics</h3>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <i class="fas fa-brain text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-gray-900">Neurology</h3>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <i class="fas fa-microscope text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-gray-900">Oncology</h3>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <i class="fas fa-baby text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-gray-900">Pediatrics</h3>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <i class="fas fa-stethoscope text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-gray-900">General Medicine</h3>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <i class="fas fa-eye text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-gray-900">Ophthalmology</h3>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <i class="fas fa-lungs text-4xl text-primary mb-4"></i>
+                    <h3 class="font-bold text-gray-900">Pulmonology</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Section (Integrated Search & Doctors) -->
+    <section id="appointment" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Find a Doctor & Book</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Schedule your consultation with our experienced specialists.</p>
+            </div>
+
+            <!-- Search & Filter Section -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-12 border border-gray-100">
+                <form id="searchForm" class="grid grid-cols-1 md:grid-cols-3 gap-6" onsubmit="event.preventDefault()">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Select Facility</label>
+                        <div class="relative">
+                            <select id="facility" class="w-full pl-3 pr-10 py-2.5 text-base border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary border bg-gray-50 appearance-none">
+                                <option value="nerul">Terna Specialty Hospital, Nerul</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-500">
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Speciality</label>
+                        <div class="relative">
+                            <select id="speciality" class="w-full pl-3 pr-10 py-2.5 text-base border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary border bg-white appearance-none">
+                                <option value="all">All Specialities</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Orthopaedics">Orthopaedics</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Oncology">Oncology</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="General Medicine">General Medicine</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-500">
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Doctor Name</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </div>
+                            <input type="text" id="doctorName" class="w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-white" placeholder="Search by name...">
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="mt-6 pt-6 border-t border-gray-100 overflow-x-auto">
+                    <span class="text-sm font-medium text-gray-500 mr-3">Browse A-Z:</span>
+                    <div class="flex space-x-2 mt-2" id="alphabetFilter">
+                        <!-- JS will populate A-Z buttons -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="doctors">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-semibold text-gray-800" id="resultCount">Loading doctors...</h3>
+                </div>
+
+                <div id="doctorsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Doctor Cards will be dynamically inserted here -->
+                </div>
+                
+                <div id="noResults" class="hidden text-center py-12 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+                    <i class="fas fa-user-md text-gray-300 text-5xl mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-900">No doctors found</h3>
+                    <button onclick="resetFilters()" class="mt-4 text-primary font-medium hover:underline">Clear all filters</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Track Appointment Section -->
+    <section id="track" class="section-padding bg-secondary">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                <div class="bg-primary px-8 py-6 text-white">
+                    <h2 class="text-2xl font-bold">Track Your Appointment</h2>
+                    <p class="text-blue-100 mt-1">Enter your Reference ID to view your booking details.</p>
+                </div>
+                <div class="p-8">
+                    <form id="trackForm" class="flex flex-col md:flex-row gap-4" onsubmit="event.preventDefault(); trackAppointment();">
+                        <div class="grow relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-hashtag text-gray-400"></i>
+                            </div>
+                            <input type="text" id="trackRefId" class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-lg" placeholder="e.g. TRN-12345" required>
+                        </div>
+                        <button type="submit" id="btnTrack" class="bg-primary hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold transition shadow-md whitespace-nowrap">
+                            Track Status
+                        </button>
+                    </form>
+
+                    <div id="trackResult" class="hidden mt-8 pt-8 border-t border-gray-100">
+                        <div id="trackContent">
+                            <!-- JS will populate this -->
+                        </div>
+                    </div>
+                    
+                    <div id="trackError" class="hidden mt-8 p-4 bg-red-50 text-red-700 rounded-lg border border-red-100 flex items-center">
+                        <i class="fas fa-exclamation-circle mr-3 text-xl"></i>
+                        <span id="trackErrorMessage"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold sm:text-4xl">Our Services</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400">Advanced medical services with a patient-centric approach.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-ambulance text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">24/7 Emergency</h3>
+                    <p class="text-gray-400">Equipped with advanced life support systems and a dedicated trauma team for immediate response.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-procedures text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Advanced ICU</h3>
+                    <p class="text-gray-400">High-dependency units with state-of-the-art monitoring for critical patient care.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-vial text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Diagnostics</h3>
+                    <p class="text-gray-400">Comprehensive pathology, radiology (MRI, CT Scan), and imaging services under one roof.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-capsules text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Pharmacy</h3>
+                    <p class="text-gray-400">Fully stocked in-house pharmacy providing 24/7 access to medicines and medical supplies.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-user-md text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Teleconsultation</h3>
+                    <p class="text-gray-400">Consult with our expert doctors from the comfort of your home via secure video calls.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-2xl hover:bg-gray-700 transition">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Home Care</h3>
+                    <p class="text-gray-400">Professional nursing and physiotherapy services delivered at your doorstep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="text-white font-bold text-2xl tracking-tight flex items-center mb-4">
+                        <i class="fas fa-hospital-symbol text-accent mr-2 text-2xl"></i>
+                        <span>TERNA</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Providing world-class healthcare with compassion and advanced technology since 1990.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#doctors" class="hover:text-white transition">Doctors</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">Support</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Emergency</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Feedback</a></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">Contact</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-accent"></i> <span>Sector 12, Phase II, Nerul (W), Navi Mumbai - 400706</span></li>
+                        <li class="flex items-center"><i class="fas fa-phone-alt mr-3 text-accent"></i> <span>022-61568000</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-sm text-center text-gray-500">
+                <p>&copy; 2024 Terna Specialty Hospital. Full-Stack Prototype.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Section -->
+    <section id="admin" class="section-padding bg-gray-50 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="adminLogin" class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                <div class="text-center mb-8">
+                    <i class="fas fa-user-shield text-4xl text-primary mb-4"></i>
+                    <h2 class="text-2xl font-bold">Admin Portal</h2>
+                    <p class="text-gray-500">Access hospital records</p>
+                </div>
+                <form onsubmit="event.preventDefault(); adminLogin();" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Passcode</label>
+                        <input type="password" id="adminPasscode" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" placeholder="Enter passcode...">
+                        <p class="text-xs text-gray-400 mt-2 italic">Hint: use 'admin123' for prototype</p>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white font-bold py-2 rounded-md hover:bg-blue-700 transition shadow-md">Login</button>
+                </form>
+            </div>
+
+            <div id="adminDashboard" class="hidden space-y-8">
+                <div class="flex flex-col md:flex-row justify-between items-center bg-white p-6 rounded-xl shadow-sm border border-gray-100 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Hospital Dashboard</h2>
+                        <p class="text-gray-500 text-sm">Real-time management</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3 justify-center" id="adminTabs">
+                        <button onclick="switchAdminTab('appointments')" id="tabAppointments" class="px-4 py-2 bg-primary text-white rounded-md font-medium transition flex items-center shadow-md">
+                            <i class="fas fa-calendar-check mr-2"></i> Appointments
+                        </button>
+                        <button onclick="switchAdminTab('doctors')" id="tabDoctors" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md font-medium transition flex items-center border border-gray-200">
+                            <i class="fas fa-user-md mr-2"></i> Manage Doctors
+                        </button>
+                        <button onclick="adminLogout()" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-md font-medium transition flex items-center border border-red-200">
+                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Appointments Tab -->
+                <div id="appointmentsSection" class="space-y-8">
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-primary">
+                                    <i class="far fa-calendar-check text-xl"></i>
+                                </div>
+                                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">Total</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900" id="statTotal">0</h3>
+                            <p class="text-sm text-gray-500 mt-1">Appointments</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600">
+                                    <i class="fas fa-user-plus text-xl"></i>
+                                </div>
+                                <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded">New</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900" id="statNew">0</h3>
+                            <p class="text-sm text-gray-500 mt-1">New Patients</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">
+                                    <i class="fas fa-user-check text-xl"></i>
+                                </div>
+                                <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">Old</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900" id="statExisting">0</h3>
+                            <p class="text-sm text-gray-500 mt-1">Existing Patients</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600">
+                                    <i class="far fa-clock text-xl"></i>
+                                </div>
+                                <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded">Today</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900" id="statToday">0</h3>
+                            <p class="text-sm text-gray-500 mt-1">Upcoming Today</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                            <h3 class="font-bold text-gray-800">Appointment Records</h3>
+                            <button onclick="exportToCSV()" class="text-sm px-3 py-1 bg-white border border-gray-300 rounded hover:bg-gray-50 transition flex items-center">
+                                <i class="fas fa-file-export mr-2 text-green-600"></i> Export CSV
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-gray-50 text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100">
+                                    <tr>
+                                        <th class="px-6 py-4">Ref ID</th>
+                                        <th class="px-6 py-4">Patient</th>
+                                        <th class="px-6 py-4">Doctor</th>
+                                        <th class="px-6 py-4">Schedule</th>
+                                        <th class="px-6 py-4">Type</th>
+                                        <th class="px-6 py-4">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminTableBody" class="divide-y divide-gray-100">
+                                    <!-- JS will populate -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="adminLoading" class="py-12 text-center hidden">
+                            <i class="fas fa-spinner fa-spin text-3xl text-primary"></i>
+                            <p class="mt-4 text-gray-500">Loading appointments...</p>
+                        </div>
+                        <div id="adminEmpty" class="hidden py-12 text-center">
+                            <i class="far fa-calendar-times text-4xl text-gray-300 mb-4"></i>
+                            <p class="text-gray-500 font-medium">No appointments found.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctors Tab -->
+                <div id="doctorsSection" class="hidden space-y-4">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-4 justify-between items-center">
+                        <div class="relative grow w-full">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </div>
+                            <input type="text" id="adminDoctorSearch" oninput="filterAdminDoctors()" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" placeholder="Search doctor by name or speciality...">
+                        </div>
+                        <div class="flex gap-2 w-full md:w-auto">
+                            <button onclick="openAddDoctorModal()" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md font-medium transition flex items-center shadow-sm whitespace-nowrap">
+                                <i class="fas fa-plus mr-2"></i> Add Doctor
+                            </button>
+                            <button onclick="fetchDoctors()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md font-medium transition flex items-center border border-gray-200 whitespace-nowrap">
+                                <i class="fas fa-sync-alt mr-2"></i> Refresh List
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-gray-50 text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100">
+                                    <tr>
+                                        <th class="px-6 py-4">Doctor</th>
+                                        <th class="px-6 py-4">Speciality</th>
+                                        <th class="px-6 py-4">Qualification</th>
+                                        <th class="px-6 py-4">Availability</th>
+                                        <th class="px-6 py-4">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminDoctorsTableBody" class="divide-y divide-gray-100">
+                                    <!-- JS will populate -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctor Edit Modal -->
+    <div id="editDoctorModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="closeEditDoctorModal()"></div>
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
+            <div class="relative bg-white rounded-xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:max-w-lg w-full flex flex-col">
+                <div class="bg-primary px-6 py-4 flex justify-between items-center text-white">
+                    <h3 class="text-lg font-semibold leading-6">Edit Doctor Information</h3>
+                    <button type="button" class="text-white hover:text-gray-200" onclick="closeEditDoctorModal()"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <form id="editDoctorForm" onsubmit="event.preventDefault(); saveDoctorInfo();" class="p-6 space-y-4">
+                    <input type="hidden" id="editDocId">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Doctor Name</label>
+                        <input type="text" id="editDocName" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Speciality</label>
+                        <select id="editDocSpec" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary bg-white" required>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Orthopaedics">Orthopaedics</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Oncology">Oncology</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                            <option value="General Medicine">General Medicine</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Qualification</label>
+                        <input type="text" id="editDocQual" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Experience</label>
+                        <input type="text" id="editDocExp" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Availability</label>
+                        <input type="text" id="editDocAvail" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Speciality Info (5-6 lines description)</label>
+                        <textarea id="editDocSpecInfo" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" placeholder="Enter detailed speciality information..."></textarea>
+                    </div>
+                    <div class="pt-4 flex gap-3">
+                        <button type="button" onclick="closeEditDoctorModal()" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition">Cancel</button>
+                        <button type="submit" class="flex-1 px-4 py-2 bg-primary text-white font-bold rounded-md hover:bg-blue-700 transition shadow-md">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
+            <div class="relative bg-white rounded-xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:max-w-2xl w-full flex flex-col max-h-[90vh]">
+                <div class="bg-primary px-6 py-4 flex justify-between items-center text-white shrink-0">
+                    <h3 class="text-lg font-semibold leading-6" id="modal-title">Book Appointment</h3>
+                    <button type="button" class="text-white hover:text-gray-200" onclick="closeModal()"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <div class="px-6 py-6 overflow-y-auto grow">
+                    <div class="flex items-center p-4 bg-secondary rounded-lg mb-6 border border-blue-100">
+                        <div class="w-16 h-16 rounded-full bg-blue-200 flex items-center justify-center text-primary text-xl font-bold mr-4 shrink-0" id="modalDoctorInitial">D</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg" id="modalDoctorName">Dr. Name</h4>
+                            <p class="text-sm text-primary font-medium" id="modalDoctorSpec">Speciality</p>
+                        </div>
+                    </div>
+                    <div id="bookingSteps">
+                        <!-- Step 1 -->
+                        <div id="step1" class="step-content block">
+                            <h5 class="font-semibold text-gray-800 mb-4 text-lg border-b pb-2">Patient Information</h5>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="patientType" value="existing" class="peer sr-only" checked onchange="togglePatientForm()">
+                                    <div class="p-4 rounded-lg border-2 border-gray-200 peer-checked:border-primary peer-checked:bg-blue-50 text-center">
+                                        <i class="fas fa-user-check text-2xl text-primary mb-2"></i>
+                                        <div class="font-medium">Existing Patient</div>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="patientType" value="new" class="peer sr-only" onchange="togglePatientForm()">
+                                    <div class="p-4 rounded-lg border-2 border-gray-200 peer-checked:border-primary peer-checked:bg-blue-50 text-center">
+                                        <i class="fas fa-user-plus text-2xl text-primary mb-2"></i>
+                                        <div class="font-medium">New Patient</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div id="existingPatientForm" class="block space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">UHID / Mobile Number *</label>
+                                    <input type="text" id="uhid_mobile" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                </div>
+                            </div>
+                            <div id="newPatientForm" class="hidden space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <input type="text" id="firstName" placeholder="First Name *" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <input type="text" id="lastName" placeholder="Last Name *" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <input type="tel" id="mobile" placeholder="Mobile Number *" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <input type="email" id="email" placeholder="Email" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <select id="gender" class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white">
+                                        <option value="">Gender *</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                    <input type="date" id="dob" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div id="step2" class="step-content hidden">
+                            <h5 class="font-semibold text-gray-800 mb-4 text-lg border-b pb-2">Select Date & Time</h5>
+                            <input type="date" id="appointmentDate" class="w-full md:w-1/2 px-3 py-2 border border-gray-300 rounded-md mb-6">
+                            <div id="timeSlots" class="grid grid-cols-3 sm:grid-cols-4 gap-3"></div>
+                            <p id="noDateSelectedMsg" class="text-sm text-gray-500 italic mt-2">Please select a date to view available slots.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div id="step3" class="step-content hidden text-center py-8">
+                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-check text-3xl text-green-500"></i></div>
+                            <h4 class="text-2xl font-bold text-gray-900 mb-2">Booking Initiated!</h4>
+                            <p class="text-gray-600 mb-6">Your appointment with <span id="successDoctorName" class="font-semibold"></span> is being processed.</p>
+                            <div class="bg-gray-50 p-4 rounded-lg inline-block text-left border border-gray-200">
+                                <p class="text-sm">Reference ID: <span id="successRefId" class="font-mono font-bold"></span></p>
+                                <p class="text-sm mt-1">Date: <span id="successDate" class="font-medium"></span></p>
+                                <p class="text-sm mt-1">Time: <span id="successTime" class="font-medium"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-6 py-4 flex justify-between items-center border-t border-gray-200 shrink-0" id="modalFooter">
+                    <button type="button" id="btnBack" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hidden" onclick="prevStep()">Back</button>
+                    <div id="footerSpacer" class="grow"></div>
+                    <button type="button" id="btnNext" class="px-5 py-2 text-sm font-medium text-white bg-primary rounded-md" onclick="nextStep()">Proceed to Schedule</button>
+                    <button type="button" id="btnConfirm" class="px-5 py-2 text-sm font-medium text-white bg-green-600 rounded-md hidden" onclick="confirmBooking()">Confirm Booking</button>
+                    <button type="button" id="btnCloseSuccess" class="px-5 py-2 text-sm font-medium text-white bg-primary rounded-md hidden" onclick="closeModal()">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
