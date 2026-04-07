@@ -1,23 +1,33 @@
 {
   "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "server.js",
-      "use": "@vercel/node"
+      "source": "/api/doctors/:id",
+      "destination": "/api/doctors.js?id=:id"
     },
     {
-      "src": "public/**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "server.js"
+      "source": "/api/appointments/:refId",
+      "destination": "/api/appointments.js?refId=:refId"
     },
     {
-      "src": "/(.*)",
-      "dest": "public/$1"
+      "source": "/api/admin/appointments",
+      "destination": "/api/admin/appointments.js"
+    },
+    {
+      "source": "/api/booked-slots",
+      "destination": "/api/booked-slots.js"
+    },
+    {
+      "source": "/api/doctors",
+      "destination": "/api/doctors.js"
+    },
+    {
+      "source": "/api/appointments",
+      "destination": "/api/appointments.js"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/public/$1"
     }
   ]
 }
