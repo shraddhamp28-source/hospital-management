@@ -3,6 +3,11 @@ let currentFilteredDoctors = [];
 let selectedAlphabet = null;
 let selectedDoctorForBooking = null;
 let currentStep = 1;
+const API_BASE_URL = (window.APP_CONFIG?.API_BASE_URL || '').replace(/\/+$/, '');
+
+function apiUrl(path) {
+    return `${API_BASE_URL}${path}`;
+}
 
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Fetch Doctors from API
 async function fetchDoctors() {
     try {
-        const response = await fetch('/api/doctors');
+        const response = await fetch(apiUrl('/api/doctors'));
         allDoctors = await response.json();
         currentFilteredDoctors = [...allDoctors];
         renderDoctors(currentFilteredDoctors);
@@ -246,7 +251,7 @@ async function generateTimeSlots() {
     container.innerHTML = '<div class="col-span-full text-center py-4"><i class="fas fa-spinner fa-spin text-primary mr-2"></i>Loading slots...</div>';
 
     try {
-        const response = await fetch(`/api/booked-slots?doctorId=${doctorId}&date=${date}`);
+        const response = await fetch(apiUrl(`/api/booked-slots?doctorId=${doctorId}&date=${date}`));
         const bookedSlots = await response.json();
 
         container.innerHTML = '';
@@ -307,7 +312,7 @@ async function confirmBooking() {
     }
 
     try {
-        const response = await fetch('/api/appointments', {
+        const response = await fetch(apiUrl('/api/appointments'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(bookingData)
@@ -357,7 +362,7 @@ async function trackAppointment() {
     btnTrack.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Tracking...';
 
     try {
-        const response = await fetch(`/api/appointments/${refId}`);
+        const response = await fetch(apiUrl(`/api/appointments/${refId}`));
         const data = await response.json();
 
         if (response.ok) {
@@ -438,7 +443,7 @@ async function cancelAppointment(refId) {
     if (!confirm(`Are you sure you want to cancel appointment ${refId}? This action cannot be undone.`)) return;
 
     try {
-        const response = await fetch(`/api/appointments/${refId}`, { method: 'DELETE' });
+        const response = await fetch(apiUrl(`/api/appointments/${refId}`), { method: 'DELETE' });
         const result = await response.json();
         
         if (response.ok) {
@@ -572,7 +577,7 @@ async function deleteDoctor(doctorId) {
     if (!confirm('Are you sure you want to remove this doctor? This will not affect existing appointments but the doctor will no longer be available for new bookings.')) return;
 
     try {
-        const response = await fetch(`/api/doctors/${doctorId}`, {
+        const response = await fetch(apiUrl(`/api/doctors/${doctorId}`), {
             method: 'DELETE'
         });
 
@@ -601,7 +606,7 @@ async function saveDoctorInfo() {
         specialityInfo: document.getElementById('editDocSpecInfo').value
     };
 
-    const url = id ? `/api/doctors/${id}` : '/api/doctors';
+    const url = id ? apiUrl(`/api/doctors/${id}`) : apiUrl('/api/doctors');
     const method = id ? 'PUT' : 'POST';
 
     try {
@@ -648,7 +653,7 @@ async function fetchAdminAppointments() {
     empty.classList.add('hidden');
 
     try {
-        const response = await fetch('/api/admin/appointments');
+        const response = await fetch(apiUrl('/api/admin/appointments'));
         const result = await response.json();
 
         if (!response.ok) {
