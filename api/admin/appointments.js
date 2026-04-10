@@ -1,8 +1,13 @@
-const connectToDatabase = require('../server/config/db');
-const Appointment = require('../server/models/Appointment');
+const connectToDatabase = require('../../server/config/db');
+const Appointment = require('../../server/models/Appointment');
 
 module.exports = async (req, res) => {
-    await connectToDatabase();
+    try {
+        await connectToDatabase();
+    } catch (dbErr) {
+        console.error('Database connection error:', dbErr);
+        return res.status(500).json({ message: "Database connection failed." });
+    }
 
     if (req.method === 'GET') {
         try {

@@ -2,7 +2,12 @@ const connectToDatabase = require('../server/config/db');
 const Doctor = require('../server/models/Doctor');
 
 module.exports = async (req, res) => {
-    await connectToDatabase();
+    try {
+        await connectToDatabase();
+    } catch (dbErr) {
+        console.error('Database connection error:', dbErr);
+        return res.status(500).json({ message: "Database connection failed." });
+    }
 
     const { id } = req.query;
 
@@ -16,10 +21,13 @@ module.exports = async (req, res) => {
     }
 
     if (req.method === 'POST') {
+        if (!req.body) {
+            return res.status(400).json({ message: "Request body is missing." });
+        }
         const { name, speciality, specialityInfo, experience, qualification, availableDays } = req.body;
         
         if (!name || !speciality || !experience || !qualification || !availableDays) {
-            return res.status(400).json({ message: "All fields are required." });
+            return res.status(400).json({ message: "All fields (name, speciality, experience, qualification, availableDays) are required." });
         }
 
         const doctor = new Doctor({
@@ -41,6 +49,9 @@ module.exports = async (req, res) => {
 
     if (req.method === 'PUT') {
         if (!id) return res.status(400).json({ message: "Doctor ID is required." });
+        if (!req.body) {
+            return res.status(400).json({ message: "Request body is missing." });
+        }
         try {
             const doctor = await Doctor.findByIdAndUpdate(id, req.body, { new: true });
             if (!doctor) {

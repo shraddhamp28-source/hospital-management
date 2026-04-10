@@ -617,8 +617,14 @@ async function saveDoctorInfo() {
             await fetchDoctors(); // Refresh local list
             renderAdminDoctors(allDoctors); // Refresh table
         } else {
-            const error = await response.json();
-            alert('Failed to save: ' + error.message);
+            let errorMessage = 'Unknown error';
+            try {
+                const error = await response.json();
+                errorMessage = error.message;
+            } catch (jsonErr) {
+                errorMessage = 'Server returned an error (Status ' + response.status + ').';
+            }
+            alert('Failed to save: ' + errorMessage);
         }
     } catch (err) {
         console.error('Save error:', err);
@@ -643,7 +649,13 @@ async function fetchAdminAppointments() {
 
     try {
         const response = await fetch('/api/admin/appointments');
-        currentAdminAppointments = await response.json();
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || `Request failed with status ${response.status}.`);
+        }
+
+        currentAdminAppointments = Array.isArray(result) ? result : [];
         
         loading.classList.add('hidden');
 
@@ -702,7 +714,7 @@ async function fetchAdminAppointments() {
     } catch (err) {
         console.error('Admin fetch error:', err);
         loading.classList.add('hidden');
-        alert("Failed to load appointments for dashboard.");
+        alert(`Failed to load appointments for dashboard. ${err.message}`);
     }
 }
 

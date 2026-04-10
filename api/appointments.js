@@ -2,7 +2,12 @@ const connectToDatabase = require('../server/config/db');
 const Appointment = require('../server/models/Appointment');
 
 module.exports = async (req, res) => {
-    await connectToDatabase();
+    try {
+        await connectToDatabase();
+    } catch (dbErr) {
+        console.error('Database connection error:', dbErr);
+        return res.status(500).json({ message: "Database connection failed." });
+    }
 
     const { refId } = req.query;
 
@@ -21,12 +26,14 @@ module.exports = async (req, res) => {
                 return res.status(500).json({ message: err.message });
             }
         } else {
-            // The frontend doesn't seem to have a "get all appointments" for non-admin
             return res.status(400).json({ message: "Reference ID is required." });
         }
     }
 
     if (req.method === 'POST') {
+        if (!req.body) {
+            return res.status(400).json({ message: "Request body is missing." });
+        }
         const { 
             patientType, patientName, patientLastName, mobileNumber, email, 
             gender, dob, uhid, doctorId, date, time 
